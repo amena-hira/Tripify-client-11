@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import img from '../../assets/favicon.ico';
 import TopHeadSocial from './TopHeadSocial';
 
 const Header = () => {
@@ -14,8 +13,8 @@ const Header = () => {
                     </div>
                     <div className="flex-none">
                         <ul className="menu menu-horizontal p-0">
-                            <li><a>Item 1</a></li>
-                            <li><a>Item 3</a></li>
+                            <li><Link>My Reviews</Link></li>
+                            <li><Link to='/login'>Login</Link></li>
                         </ul>
                     </div>
                 </div>

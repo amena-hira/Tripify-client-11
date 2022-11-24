@@ -5,7 +5,7 @@ const Tours = () => {
     return (
         <div className='max-w-screen-xl py-3 mx-auto my-20'>
             <h2 className='text-center text-4xl'>Popular Deals</h2>
-            <div className='grid gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-10'>
+            <div className='grid px-6 gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-10'>
                 <div className="card lg:card-side drop-shadow-2xl bg-slate-200 shadow-xl">
                     <figure><img className='card-img' src="https://placeimg.com/400/400/arch" alt="Album"/></figure>
                     <div className="card-body">
