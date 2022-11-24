@@ -24,7 +24,14 @@ const Service = () => {
             body: JSON.stringify(service)
         })
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => {
+            if(data.acknowledged){
+                alert('service placed successfully')
+                form.reset();
+                
+            }
+            console.log(data)
+        })
     }
     return (
         <div className='flex justify-center pt-8 '>

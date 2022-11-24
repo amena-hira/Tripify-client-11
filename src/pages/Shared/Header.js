@@ -16,7 +16,7 @@ const Header = () => {
                 <TopHeadSocial></TopHeadSocial>
                 <div className="navbar ">
                     <div className="flex-1">
-                        <Link className="btn btn-ghost normal-case lg:text-4xl font-serif italic tracking-widest">Tripify</Link>
+                        <Link to='/' className="btn btn-ghost normal-case lg:text-4xl font-serif italic tracking-widest">Tripify</Link>
                     </div>
                     <div className="flex-none">
                         <ul className="menu menu-horizontal p-0">

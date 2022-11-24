@@ -28,8 +28,12 @@ const Login = () => {
                 body: JSON.stringify(currentUser)
             })
             .then(res => res.json())
-            .then(data => console.log(data))
-            // navigate('/');
+            .then(data => {
+                console.log(data.token);
+                localStorage.setItem('tripify-token', data.token);
+                navigate('/');
+            })
+            
         })
         .catch(error => console.log(error));
     }
