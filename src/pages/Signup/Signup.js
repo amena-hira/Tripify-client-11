@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 import useTitle from '../../hooks/useTitle';
 
 const Signup = () => {
     useTitle('Sign Up')
-    const { createUser, updateUserProfile } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const { createUser, updateUserProfile, logOut } = useContext(AuthContext);
     const handleCreateUser = (event) =>{
         event.preventDefault();
         const form = event.target;
@@ -24,6 +25,8 @@ const Signup = () => {
             }
             updateUserProfile(profile);
             form.reset();
+            logOut();
+            navigate('/login')
           })
           .catch((error) => {
             console.log(error);

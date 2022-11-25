@@ -1,7 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const EditReviewForm = ({review, service}) => {
     const {_id, reviewText, serviceName, email} = review;
+    const navigate = useNavigate();
     const handleUpdateReview = (event) =>{
         event.preventDefault();
         const form = event.target;
@@ -18,7 +20,7 @@ const EditReviewForm = ({review, service}) => {
             if(data.acknowledged){
                 alert('Review edited successfully')
                 form.reset();
-                
+                navigate('/myreview');
             }
             console.log(data)
         })
