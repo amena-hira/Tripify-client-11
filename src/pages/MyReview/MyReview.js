@@ -38,8 +38,9 @@ const MyReview = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
+                notify();
                 if(data.deletedCount > 0){
-                    notify()
+                    
                     const remaining = reviews.filter(review => review._id !== _id);
                     setReviews(remaining);
                     
@@ -50,11 +51,12 @@ const MyReview = () => {
     
     return (
         <div>
+            <ToastContainer />
             {
                 reviews.length === 0 ?
                 <>
                     
-                    <ToastContainer />
+                    
                     <h2 className='text-center my-2'>No reviews were added!</h2>
                 </>
                 :
