@@ -1,3 +1,15 @@
+# Project Name - "Tripify Travel AGency"
+# Live Site Link - 
+# Features & Functions
+
+* Anyone can choose tour country
+* login user can add service
+* Anyone can view tour details and all reviews
+* Login user can add a review
+* Login user also edit and delete their review
+* Can see their reviews
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
