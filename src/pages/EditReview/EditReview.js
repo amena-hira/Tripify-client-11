@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import useTitle from '../../hooks/useTitle';
 import ServiceDetails from '../Shared/SeviceDetails/ServiceDetails';
 import EditReviewForm from './EditReviewForm/EditReviewForm';
 
 const EditReview = () => {
+    useTitle('Edit Review')
     const review = useLoaderData();
     const [services, setServices] = useState([]);
     useEffect(()=>{

@@ -1,20 +1,31 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
+import useTitle from '../../hooks/useTitle';
 import ReviewTable from './ReviewTable/ReviewTable';
 
 const MyReview = () => {
-    const {user} = useContext(AuthContext);
+    useTitle('My Review')
+    const {user, logOut} = useContext(AuthContext);
     const [reviews, setReviews] = useState([]);
     const services = useLoaderData();
 
     useEffect(()=>{
-        fetch(`http://localhost:5000/user/review?email=${user?.email}`)
-        .then(res => res.json())
+        fetch(`http://localhost:5000/user/review?email=${user?.email}`,{
+            headers:{
+                authorization: `Bearer ${localStorage.getItem('tripify-token')}`
+            }
+        })
+        .then(res => {
+            if (res.status === 401 || res.status === 403) {
+                logOut()
+            }
+            return res.json()
+        })
         .then(data => {
             setReviews(data);
         })
-    },[user?.email])
+    },[user?.email, logOut])
     const handleDelete = _id => {
         const proceed = window.confirm('Are you sure about delete this review?')
         if (proceed) {
@@ -58,7 +69,7 @@ const MyReview = () => {
                         </thead>
                         <tbody>
                             {
-                                reviews.map(review => <ReviewTable 
+                                reviews.length > 0 && reviews.map(review => <ReviewTable 
                                     key={review._id} 
                                     review={review}
                                     services={services}

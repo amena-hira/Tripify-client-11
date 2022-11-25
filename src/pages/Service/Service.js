@@ -1,7 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import useTitle from '../../hooks/useTitle';
 
 const Service = () => {
+    useTitle('Add Service')
     const handleSubmitService = (event) =>{
         event.preventDefault();
         const form = event.target;

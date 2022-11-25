@@ -3,8 +3,10 @@ import {createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthState
 import app from '../firebase/firebase.config';
 
 export const AuthContext = createContext();
+
 const provider = new GoogleAuthProvider();
 const auth = getAuth(app);
+
 const AuthProvider = ({children}) => {
     const [user,setUser] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -14,6 +16,7 @@ const AuthProvider = ({children}) => {
     }
 
     const googleSignIn = () =>{
+        setLoading(true);
         return signInWithPopup(auth, provider);
     }
 

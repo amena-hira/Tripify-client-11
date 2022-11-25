@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
+import useTitle from '../../hooks/useTitle';
 import ServiceDetails from '../Shared/SeviceDetails/ServiceDetails';
 import ReviewWithService from './ReviewWithService/ReviewWithService';
 
 const OneService = () => {
+    useTitle('Service & Review')
     const service = useLoaderData();
     const {_id, image} = service;
     return (
