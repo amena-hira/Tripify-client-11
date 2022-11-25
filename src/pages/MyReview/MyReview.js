@@ -3,12 +3,15 @@ import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 import useTitle from '../../hooks/useTitle';
 import ReviewTable from './ReviewTable/ReviewTable';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const MyReview = () => {
     useTitle('My Review')
     const {user, logOut} = useContext(AuthContext);
     const [reviews, setReviews] = useState([]);
     const services = useLoaderData();
+    const notify = () => toast("Deleted successfully!");
 
     useEffect(()=>{
         fetch(`http://localhost:5000/user/review?email=${user?.email}`,{
@@ -36,9 +39,10 @@ const MyReview = () => {
             .then(data => {
                 console.log(data);
                 if(data.deletedCount > 0){
-                    alert('deleted successfully');
+                    notify()
                     const remaining = reviews.filter(review => review._id !== _id);
                     setReviews(remaining);
+                    
                 }
             })
         }
@@ -49,10 +53,13 @@ const MyReview = () => {
             {
                 reviews.length === 0 ?
                 <>
+                    
+                    <ToastContainer />
                     <h2 className='text-center my-2'>No reviews were added!</h2>
                 </>
                 :
                 <div className="overflow-x-auto w-full">
+                    
                     <table className="table w-full">
                         <thead>
                             <tr>
@@ -74,6 +81,7 @@ const MyReview = () => {
                                     review={review}
                                     services={services}
                                     handleDelete={handleDelete}
+                                    
                                 ></ReviewTable>)
                             }
                         </tbody>
