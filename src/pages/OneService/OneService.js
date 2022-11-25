@@ -1,24 +1,30 @@
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
-import Tour from '../Home/Tours/Tour/Tour';
-import ReviewTable from './ReviewTable/ReviewTable';
+import ServiceDetails from '../Shared/SeviceDetails/ServiceDetails';
+import ReviewWithService from './ReviewWithService/ReviewWithService';
 
 const OneService = () => {
     const service = useLoaderData();
-    const {_id, serviceName, image, price, details} = service;
+    const {_id, image} = service;
     return (
-        <div className='max-w-6xl mx-auto my-8'>
-            <div className="card bg-base-100 shadow-xl image-full">
-                <figure><img src={image} alt="Shoes" /></figure>
-                <div className="card-body">
-                    <h2 className="card-title">{serviceName}</h2>
-                    <span><strong>Price: $</strong>{price}</span>
-                    <p>{details}</p>
+        <div className='max-w-screen-lg mx-auto'>
+            <div className='grid grid-cols-1 lg:grid-cols-2 gap-6 px-4 my-8'>
+                <div className="card bg-base-100 shadow-xl image-full">
+                    <figure><img src={image} alt="Shoes" /></figure>
+                    <div className="card-body">
+                        <ServiceDetails service={service}></ServiceDetails>
+                        <div className="card-actions justify-end">
+                            <Link to={`/review/service/${_id}`} className="btn border-none bg-sky-500 hover:bg-sky-900">Add A Review</Link>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div>
-                <h2 className='text-center text-4xl my-8'>Reviews</h2>
-                <ReviewTable></ReviewTable>
+                
+                <div>
+                    <h2 className='text-1xl font-bold mb-2'>Reviews</h2>
+                    <ReviewWithService id={_id}></ReviewWithService>
+                    
+                </div>
+                
             </div>
         </div>
     );
