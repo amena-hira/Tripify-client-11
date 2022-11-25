@@ -43,6 +43,7 @@ const routes = createBrowserRouter([
                 loader: ({params})=> fetch(`http://localhost:5000/services/${params.id}`),
                 element: <OneService></OneService>
             },
+            // Add Review Route
             {
                 path:'/review/service/:id',
                 loader: ({params})=> fetch(`http://localhost:5000/services/${params.id}`),
