@@ -20,11 +20,14 @@ const Header = () => {
                     </div>
                     <div className="flex-none">
                         <ul className="menu menu-horizontal p-0">
-                            <li><Link to='/addservice'>Add Service</Link></li>
-                            <li><Link to='/myreview'>My Reviews</Link></li>
+                            
                             {
                                 user? 
-                                <li><Link onClick={handleLogOut}>logout</Link></li>
+                                <>
+                                    <li><Link to='/addservice'>Add Service</Link></li>
+                                    <li><Link to='/myreview'>My Reviews</Link></li>
+                                    <li><Link onClick={handleLogOut}>logout</Link></li>
+                                </>
                                 :
                                 <li><Link to='/login'>Login</Link></li>
                             }
