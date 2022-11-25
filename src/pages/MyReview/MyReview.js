@@ -35,34 +35,41 @@ const MyReview = () => {
     
     return (
         <div>
-            <div className="overflow-x-auto w-full">
-                <table className="table w-full">
-                    <thead>
-                        <tr>
-                            <th>
-                            <label>
-                                <input type="checkbox" className="checkbox" />
-                            </label>
-                            </th>
-                            <th>Service Name</th>
-                            <th>Review</th>
-                            <th>Price</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            reviews.map(review => <ReviewTable 
-                                key={review._id} 
-                                review={review}
-                                services={services}
-                                handleDelete={handleDelete}
-                            ></ReviewTable>)
-                        }
-                    </tbody>
-                    
-                </table>
-            </div>
+            {
+                reviews.length === 0 ?
+                <>
+                    <h2 className='text-center my-2'>No reviews were added!</h2>
+                </>
+                :
+                <div className="overflow-x-auto w-full">
+                    <table className="table w-full">
+                        <thead>
+                            <tr>
+                                <th>
+                                <label>
+                                    <input type="checkbox" className="checkbox" />
+                                </label>
+                                </th>
+                                <th>Service Name</th>
+                                <th>Review</th>
+                                <th>Price</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                reviews.map(review => <ReviewTable 
+                                    key={review._id} 
+                                    review={review}
+                                    services={services}
+                                    handleDelete={handleDelete}
+                                ></ReviewTable>)
+                            }
+                        </tbody>
+                        
+                    </table>
+                </div>
+            }
         </div>
     );
 };

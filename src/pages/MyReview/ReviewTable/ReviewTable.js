@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { FaEdit } from 'react-icons/fa';
+import { AiFillDelete } from "react-icons/ai";
 
 const ReviewTable = ({review, services, handleDelete}) => {
     const serviceReview = services.find(service => service._id === review.service);
     const {_id,reviewText} = review;
 
-    
     return (
         <tr>
             <th>
                 <label>
-                    <h2 onClick={()=>handleDelete(_id)}>X</h2>
+                    <AiFillDelete onClick={()=>handleDelete(_id)}></AiFillDelete>
                 </label>
             </th>
             <td>
@@ -30,7 +31,7 @@ const ReviewTable = ({review, services, handleDelete}) => {
             </td>
             <td>{serviceReview.price}</td>
             <th>
-                <Link to={`/editreview/${_id}`} className="btn btn-ghost btn-xs">Edit</Link>
+                <Link to={`/editreview/${_id}`} className="btn btn-ghost btn-xs"><FaEdit></FaEdit> </Link>
             </th>
         </tr>
     );

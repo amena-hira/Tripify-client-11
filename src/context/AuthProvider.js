@@ -1,8 +1,9 @@
 import React, { createContext, useEffect, useState } from 'react';
-import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile} from 'firebase/auth';
+import {createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile} from 'firebase/auth';
 import app from '../firebase/firebase.config';
 
 export const AuthContext = createContext();
+const provider = new GoogleAuthProvider();
 const auth = getAuth(app);
 const AuthProvider = ({children}) => {
     const [user,setUser] = useState(null);
@@ -12,14 +13,20 @@ const AuthProvider = ({children}) => {
         return createUserWithEmailAndPassword(auth, email, password);
     }
 
+    const googleSignIn = () =>{
+        return signInWithPopup(auth, provider);
+    }
+
     const login = (email, password) =>{
         setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
     }
+
     const logOut = () =>{
         localStorage.removeItem('genius-token');
         return signOut(auth);
     }
+
     const updateUserProfile = (profile) =>{
         updateProfile(auth.currentUser, profile)
         .then(() => {})
@@ -27,6 +34,7 @@ const AuthProvider = ({children}) => {
             console.log(error);
         });
     }
+    
 
     useEffect( () =>{
         const unsubscribe = onAuthStateChanged(auth, currentUser =>{
@@ -44,7 +52,8 @@ const AuthProvider = ({children}) => {
         user, 
         loading,
         updateUserProfile,
-        createUser, 
+        createUser,
+        googleSignIn, 
         login,
         logOut
     } 
