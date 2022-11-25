@@ -1,8 +1,11 @@
 import React from 'react';
 import useTitle from '../../hooks/useTitle';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Service = () => {
-    useTitle('Add Service')
+    useTitle('Add Service');
+    const notify = () => toast("Added successfully!");
     const handleSubmitService = (event) =>{
         event.preventDefault();
         const form = event.target;
@@ -27,7 +30,7 @@ const Service = () => {
         .then(res => res.json())
         .then(data => {
             if(data.acknowledged){
-                alert('service placed successfully')
+                notify();
                 form.reset();
                 
             }
@@ -36,6 +39,7 @@ const Service = () => {
     }
     return (
         <div className='flex justify-center pt-8 '>
+            <ToastContainer />
             <div className="card flex-shrink-0 w-full max-w-md shadow-2xl bg-base-100 drop-shadow-2xl">
                 <form onSubmit={handleSubmitService} className="card-body">
                     <h2 className='text-center text-4xl'>Add A Service</h2>
