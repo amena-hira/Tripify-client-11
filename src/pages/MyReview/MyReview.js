@@ -1,17 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 import ReviewTable from './ReviewTable/ReviewTable';
 
 const MyReview = () => {
     const {user} = useContext(AuthContext);
     const [reviews, setReviews] = useState([]);
-    const [services, setServices] = useState([]);
-
-    useEffect(()=>{
-        fetch('http://localhost:5000/allservices')
-        .then(res => res.json())
-        .then(data => setServices(data))
-    },[])
+    const services = useLoaderData();
 
     useEffect(()=>{
         fetch(`http://localhost:5000/user/review?email=${user?.email}`)
@@ -20,6 +15,23 @@ const MyReview = () => {
             setReviews(data);
         })
     },[user?.email])
+    const handleDelete = _id => {
+        const proceed = window.confirm('Are you sure about delete this review?')
+        if (proceed) {
+            fetch(`http://localhost:5000/reviews/${_id}`,{
+                method: 'DELETE'
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if(data.deletedCount > 0){
+                    alert('deleted successfully');
+                    const remaining = reviews.filter(review => review._id !== _id);
+                    setReviews(remaining);
+                }
+            })
+        }
+    }
     
     return (
         <div>
@@ -44,6 +56,7 @@ const MyReview = () => {
                                 key={review._id} 
                                 review={review}
                                 services={services}
+                                handleDelete={handleDelete}
                             ></ReviewTable>)
                         }
                     </tbody>
