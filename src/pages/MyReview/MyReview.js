@@ -14,7 +14,7 @@ const MyReview = () => {
     const notify = () => toast("Deleted successfully!");
 
     useEffect(()=>{
-        fetch(`http://localhost:5000/user/review?email=${user?.email}`,{
+        fetch(`https://tripify-server-indol.vercel.app/user/review?email=${user?.email}`,{
             headers:{
                 authorization: `Bearer ${localStorage.getItem('tripify-token')}`
             }
@@ -32,7 +32,7 @@ const MyReview = () => {
     const handleDelete = _id => {
         const proceed = window.confirm('Are you sure about delete this review?')
         if (proceed) {
-            fetch(`http://localhost:5000/reviews/${_id}`,{
+            fetch(`https://tripify-server-indol.vercel.app/reviews/${_id}`,{
                 method: 'DELETE'
             })
             .then(res => res.json())

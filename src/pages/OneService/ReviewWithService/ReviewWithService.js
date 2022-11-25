@@ -5,7 +5,7 @@ import ReviewService from './ReviewService/ReviewService';
 const ReviewWithService = ({id}) => {
     const [reviews, setReviews] = useState([]);
     useEffect(()=>{
-        fetch(`http://localhost:5000/service/reviews/${id}`)
+        fetch(`https://tripify-server-indol.vercel.app/service/reviews/${id}`)
         .then(res => res.json())
         .then(data => {
             setReviews(data);

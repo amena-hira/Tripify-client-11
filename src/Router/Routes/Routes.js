@@ -35,28 +35,28 @@ const routes = createBrowserRouter([
             },
             {
                 path:'/allservice',
-                loader: () => fetch('http://localhost:5000/allservices'),
+                loader: () => fetch('https://tripify-server-indol.vercel.app/allservices'),
                 element: <AllTours></AllTours>
             },
             {
                 path:'/services/:id',
-                loader: ({params})=> fetch(`http://localhost:5000/services/${params.id}`),
+                loader: ({params})=> fetch(`https://tripify-server-indol.vercel.app/services/${params.id}`),
                 element: <OneService></OneService>
             },
             // Add Review Route
             {
                 path:'/review/service/:id',
-                loader: ({params})=> fetch(`http://localhost:5000/services/${params.id}`),
+                loader: ({params})=> fetch(`https://tripify-server-indol.vercel.app/services/${params.id}`),
                 element: <AddReview></AddReview>
             },
             {
                 path:'/myreview',
-                loader: () => fetch('http://localhost:5000/allservices'),
+                loader: () => fetch('https://tripify-server-indol.vercel.app/allservices'),
                 element: <PrivateRoute><MyReview></MyReview></PrivateRoute>
             },
             {
                 path:'/editreview/:id',
-                loader: ({params})=> fetch(`http://localhost:5000/reviews/${params.id}`),
+                loader: ({params})=> fetch(`https://tripify-server-indol.vercel.app/reviews/${params.id}`),
                 element: <PrivateRoute><EditReview></EditReview></PrivateRoute>
             },
             {

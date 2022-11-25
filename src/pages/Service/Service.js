@@ -20,7 +20,7 @@ const Service = () => {
             price,
             details
         }
-        fetch('http://localhost:5000/services',{
+        fetch('https://tripify-server-indol.vercel.app/services',{
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

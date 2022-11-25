@@ -8,7 +8,7 @@ const EditReviewForm = ({review, service}) => {
         event.preventDefault();
         const form = event.target;
         const reviewText = form.reviewText.value;
-        fetch(`http://localhost:5000/reviews/${_id}`,{
+        fetch(`https://tripify-server-indol.vercel.app/reviews/${_id}`,{
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',

@@ -9,7 +9,7 @@ const EditReview = () => {
     const review = useLoaderData();
     const [services, setServices] = useState([]);
     useEffect(()=>{
-        fetch('http://localhost:5000/allservices')
+        fetch('https://tripify-server-indol.vercel.app/allservices')
         .then(res => res.json())
         .then(data => {
             setServices(data);
