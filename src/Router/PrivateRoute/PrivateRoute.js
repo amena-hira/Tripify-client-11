@@ -9,7 +9,7 @@ const PrivateRoute = ({children}) => {
     console.log(loading);
 
     if(loading) {
-        return <div>
+        return <div className='flex justify-center'>
             <img src={spinner} style={{height: '80px'}} alt="spinner" />
         </div>
     }
