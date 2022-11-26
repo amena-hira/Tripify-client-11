@@ -29,7 +29,7 @@ const EditReviewForm = ({review, service}) => {
         <div>
             <div className="card flex-shrink-0 w-full max-w-md shadow-2xl bg-base-100 drop-shadow-2xl">
                 <form onSubmit={handleUpdateReview} className="card-body">
-                    <h2 className='text-center text-4xl'>Add Your Review</h2>
+                    <h2 className='text-center text-4xl'>Update Your Review</h2>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Review</span>
